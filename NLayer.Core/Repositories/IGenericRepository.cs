@@ -11,14 +11,14 @@ namespace NLayer.Core.Repositories
     {
         Task<T> GetByIdAsync(int Id);
 
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAll();
 
         //IQueryable doğrudan db ye gitmez. yapılan işlemden sonra ToList() gibi methodlat çağrılmalıdır.
         //productRepository.Where(x=>x.Id > 5 ).OrderBy.ToListAsync();
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
 
-        Task AddAsync(T entity);
+        Task<T> AddAsync(T entity);
         //Toplu Eklemek için
         Task AddRangeAsync(IEnumerable<T> entities);
            
