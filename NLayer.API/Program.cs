@@ -27,6 +27,10 @@ builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 //Service projesinde AutoMapper kütüphanesini kullanýlan MapProfile class tanýmlamasý
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 //Db baðlantýsý için appsettingste ki ConnectionString verilir
 builder.Services.AddDbContext<AppDbContext>(x =>

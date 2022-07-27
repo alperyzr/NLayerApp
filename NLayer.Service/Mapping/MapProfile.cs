@@ -13,6 +13,7 @@ namespace NLayer.Service.Mapping
     {
         public MapProfile()
         {
+            //Cast Edilecek bütün DTO lar burada belirtilmek zorundadır
             //AutoMapper kütüphanesi ile mapleme işlemi yapılıyor
             //ReversalMap EntityToDto ve DtoToEntity için ters işlem amacıyla iki farklı yöntem ile çalışsın diye kullanılır
             //Bu işlemler sonrası API projesinin startup kısmında blirtilmesi gerekiyor
@@ -20,6 +21,8 @@ namespace NLayer.Service.Mapping
             CreateMap<Category,CategoryDto>().ReverseMap();
             CreateMap<ProductFeature,ProductFeatureDto>().ReverseMap();
             CreateMap<ProductUpdateDto, Product>();
+            CreateMap<Product, ProductWithCategoryDto>();
+            CreateMap<Category, CategoryWithProductsDto>();
         }
     }
 }
