@@ -6,7 +6,7 @@ namespace NLayer.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomBaseController : ControllerBase
+    public class _CustomBaseController : ControllerBase
     {
         //API Controllerda rreturn OK veya BadRequest Demek yerine generic bir method yazıldı
         [NonAction]

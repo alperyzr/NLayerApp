@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entities;
 using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
-    public class ProductController : CustomBaseController
+    public class ProductController : _CustomBaseController
     {
         private readonly IMapper _mapper;
         private readonly IProductService _productService;
 
         public ProductController(
-            IMapper mapper,
-            IService<Product> service,
+            IMapper mapper,          
             IProductService productService)
         {
             _mapper = mapper;         
