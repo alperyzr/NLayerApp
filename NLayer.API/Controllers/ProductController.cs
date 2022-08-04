@@ -14,10 +14,10 @@ namespace NLayer.API.Controllers
         private readonly IProductService _productService;
 
         public ProductController(
-            IMapper mapper,          
+            IMapper mapper,
             IProductService productService)
         {
-            _mapper = mapper;         
+            _mapper = mapper;
             _productService = productService;
         }
 
@@ -31,6 +31,8 @@ namespace NLayer.API.Controllers
         }
 
         //www.mysite.com/api/products/5 anlamında kullanılır
+        //Daha kod bloğu başlamadan NotFountFilter classına Id parametresi ile giderek olup olmadığını sorgular. 
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById(int Id)
         {
@@ -59,11 +61,11 @@ namespace NLayer.API.Controllers
         public async Task<IActionResult> Remove(int Id)
         {
             var product = await _productService.GetByIdAsync(Id);
-            await _productService.RemoveAync(product);          
+            await _productService.RemoveAync(product);
             return CreateActionResult(CustomResponseDTO<NoContentDto>.Success(204));
         }
 
-        
+
         // api/products/GetProductsWithCategory
         //otomatik olarak Action ın adını alır
         [HttpGet("[action]")]

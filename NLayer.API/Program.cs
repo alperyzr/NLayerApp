@@ -35,6 +35,9 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//NotFoundFilter classýmýzýn aktif hale gelmesi için kullanýlýr. Generic olduðu için <> açýlýp býrakýldý
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
 //======= INTERFACE IMPLEMANTASYONLARI
 builder.Services.AddScoped<IUnitOfWorkService, UnitOfWork>();
 //generic olduðu için typeof kullanarak bu þekilde yazdýk.
