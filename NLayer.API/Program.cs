@@ -13,6 +13,9 @@ using NLayer.Service.Validations;
 using NLayer.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 using NLayer.API.Middlewares;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using NLayer.API.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,22 +38,15 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//Cache lemek için kullanýlýr
+builder.Services.AddMemoryCache();
+
 //NotFoundFilter classýmýzýn aktif hale gelmesi için kullanýlýr. Generic olduðu için <> açýlýp býrakýldý
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
-//======= INTERFACE IMPLEMANTASYONLARI
-builder.Services.AddScoped<IUnitOfWorkService, UnitOfWork>();
-//generic olduðu için typeof kullanarak bu þekilde yazdýk.
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
 //Service projesinde AutoMapper kütüphanesini kullanýlan MapProfile class tanýmlamasý
 builder.Services.AddAutoMapper(typeof(MapProfile));
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 //Db baðlantýsý için appsettingste ki ConnectionString verilir
 builder.Services.AddDbContext<AppDbContext>(x =>
@@ -62,6 +58,11 @@ builder.Services.AddDbContext<AppDbContext>(x =>
          option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
      });
 });
+
+//Autofac kütüphanesi ile Module klasörü içerisinde bütün Repository ve Service classlarý implement edilir
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(conteinerBuilder => conteinerBuilder.RegisterModule(new RepoServiceModule()));
+
 
 
 var app = builder.Build();
