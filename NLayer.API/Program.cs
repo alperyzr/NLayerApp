@@ -4,7 +4,6 @@ using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Repository;
 using NLayer.Repository.Repositories;
-using NLayer.Repository.UnitOfWork;
 using NLayer.Service.Mapping;
 using NLayer.Service.Services;
 using FluentValidation.AspNetCore;

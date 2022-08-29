@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace NLayer.Repository.Repositories
 {
+
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public ProductRepository(AppDbContext dbContext) : base(dbContext)
+        public ProductRepository(AppDbContext context) : base(context)
         {
         }
 
-        public async Task<List<Product>> GetProductsWitCategoryAsync()
+        public async Task<List<Product>> GetProductsWitCategory()
         {
             //Eager Loging (data çekiliyorken catecorylerinide çekilmesi sağlandı
             return await _context.Products.Include(x => x.Category).ToListAsync();

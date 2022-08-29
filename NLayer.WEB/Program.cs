@@ -1,7 +1,30 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using NLayer.Repository;
+using NLayer.Service.Mapping;
+using NLayer.Web.Modules;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddDbContext<AppDbContext>(x =>
+{
+    //appsettingsten okuyacaðý kýsým
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+    {
+        //Dinamic olarak AppDbContext classýný içinde barýndýran Repository projesinin ismini belirtmiþ oluyoruz
+        option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+    });
+});
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(conteinerBuilder => conteinerBuilder.RegisterModule(new RepoServiceModule()));
 
 var app = builder.Build();
 
@@ -22,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Product}/{action=Index}/{id?}");
 
 app.Run();

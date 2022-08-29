@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3353F69C-0C43-4273-829D-E84F4FE043F8}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Ports.txt = Ports.txt
 	EndProjectSection
 EndProject
 Global

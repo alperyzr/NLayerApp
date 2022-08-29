@@ -54,15 +54,16 @@ namespace NLayer.API.Controllers
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
             await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
+
             return CreateActionResult(CustomResponseDTO<NoContentDto>.Success(204));
         }
 
         //www.mysite.com/api/products/5
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Remove(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
         {
-            var product = await _productService.GetByIdAsync(Id);
-            await _productService.RemoveAync(product);
+            var product = await _productService.GetByIdAsync(id);
+            await _productService.RemoveAsync(product);
             return CreateActionResult(CustomResponseDTO<NoContentDto>.Success(204));
         }
 
@@ -72,7 +73,8 @@ namespace NLayer.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsWithCategory()
         {
-            return CreateActionResult(await _productService.GetProductsWitCategoryAsync());
+
+            return CreateActionResult(await _productService.GetProductsWithCategory());
         }
     }
 }

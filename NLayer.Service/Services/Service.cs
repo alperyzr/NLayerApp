@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -60,7 +61,7 @@ namespace NLayer.Service.Services
             return hasProduct;
         }
 
-        public async Task RemoveAync(T entity)
+        public async Task RemoveAsync(T entity)
         {
             _genericRepository.Remove(entity);
             await _unitOfWorkService.CommitAsync();
@@ -72,11 +73,10 @@ namespace NLayer.Service.Services
             await _unitOfWorkService.CommitAsync();
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _genericRepository.Update(entity);
             await _unitOfWorkService.CommitAsync();
-            return entity;
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)

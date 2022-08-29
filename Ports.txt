@@ -1,0 +1,16 @@
+API PORT
+HTTPS
+https://localhost:7098/swagger/
+
+HTTP
+http://localhost:5098/
+
+==========================================
+
+WEB PORT
+HTTPS
+https://localhost:7189/
+
+HTTP
+https://localhost:5189/
+
