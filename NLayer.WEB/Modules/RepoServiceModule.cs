@@ -13,7 +13,7 @@ namespace NLayer.Web.Modules
 {
     public class RepoServiceModule : Module
     {
-
+        //program.cs te bütün interfacelerin tek classtan impelemte edilmesi için kullanılan Modül
         protected override void Load(ContainerBuilder builder)
         {
           
@@ -28,9 +28,11 @@ namespace NLayer.Web.Modules
             var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
             var serviceAssembly = Assembly.GetAssembly(typeof(MapProfile));
 
+
+            //İçerisinde Repository geçen tüm classları implemente eder
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-
+            //İçerisinde Service geçen tüm classları implemente eder
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
 
