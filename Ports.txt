@@ -9,7 +9,7 @@ http://localhost:5098/
 
 WEB PORT
 HTTPS
-https://localhost:7189/
+https://localhost:7002/
 
 HTTP
 https://localhost:5189/

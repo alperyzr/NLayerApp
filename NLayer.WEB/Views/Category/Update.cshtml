@@ -1,0 +1,25 @@
+﻿@model CategoryDto
+@{
+    ViewData["Title"] = "Katehori Güncelle";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Update" asp-controller="Category" memthod="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <span>Kategori Adı</span>
+                            <input asp-for="Name" class="form-control" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-success btn-sm">Güncelle</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

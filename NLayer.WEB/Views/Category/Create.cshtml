@@ -1,0 +1,24 @@
+﻿@model CategoryDto
+@{
+    ViewData["Title"] = "Kategory Ekle";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Create" asp-controller="Category" memthod="post">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <span>Kategori Adı</span>
+                            <input asp-for="Name" class="form-control" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-success btn-sm">Kaydet</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

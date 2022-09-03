@@ -13,7 +13,7 @@ namespace NLayer.Web.Services
 
         public async Task<List<ProductWithCategoryDto>> GetProductWithCategoryAsync()
         {
-            var response = await _httpClient.GetFromJsonAsync<CustomResponseDTO<List<ProductWithCategoryDto>>>("product/GetproductWithCategory");
+            var response = await _httpClient.GetFromJsonAsync<CustomResponseDTO<List<ProductWithCategoryDto>>>("Product/GetProductWithCategory");
             return response.Data;
         }
 

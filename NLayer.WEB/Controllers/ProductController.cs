@@ -27,7 +27,7 @@ namespace NLayer.WEB.Controllers
             return View(await _ProductAPIService.GetProductWithCategoryAsync());
         }
 
-        public async Task<IActionResult> Save()
+        public async Task<IActionResult> Create()
         {
             var categoriesDto = await _CategoryAPIService.GetAllAsync();
             ViewBag.categories = new SelectList(categoriesDto, "Id", "Name");
@@ -35,7 +35,7 @@ namespace NLayer.WEB.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(ProductDto productDto)
+        public async Task<IActionResult> Create(ProductDto productDto)
         {
             if (ModelState.IsValid)
             {

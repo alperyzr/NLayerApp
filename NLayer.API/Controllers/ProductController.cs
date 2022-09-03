@@ -71,7 +71,7 @@ namespace NLayer.API.Controllers
         // api/products/GetProductsWithCategory
         //otomatik olarak Action ın adını alır
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetProductsWithCategory()
+        public async Task<IActionResult> GetProductWithCategory()
         {
 
             return CreateActionResult(await _productService.GetProductsWithCategory());

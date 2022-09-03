@@ -3,8 +3,8 @@
     ViewData["Title"] = "Index";
 }
 
-<a class="btn btn-primary" asp-controller="Products" asp-action="Save">Save Product</a>
-<table class="table table-striped">
+<a class="btn btn-primary" asp-controller="Product" asp-action="Create">Save Product</a>
+<table class="table table-striped mt-3">
     <thead>
         <tr>
             <td>Id</td>
@@ -28,8 +28,8 @@
                 <td>@item.Category.Name</td>
                 <td>@item.CreatedDate</td>
                 <td>
-                    <a class="btn btn-warning" asp-controller="Products" asp-action="Update" asp-route-id="@item.Id">Update</a>
-                    <a class="btn btn-danger" asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-warning" asp-controller="Product" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                    <a class="btn btn-danger" asp-controller="Product" asp-action="Remove" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
